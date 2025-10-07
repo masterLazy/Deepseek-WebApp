@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1Z26 编码转换器</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #6a89cc, #4a69bd);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .main-content {
+            padding: 25px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #f9f9f9;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #6a89cc;
+            background-color: white;
+        }
+        
+        .mode-selector {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .mode-option {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .mode-option.active {
+            background-color: #6a89cc;
+            color: white;
+        }
+        
+        .result-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 60px;
+            margin-top: 10px;
+            border: 2px dashed #e0e0e0;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        
+        .examples {
+            margin-top: 25px;
+            background-color: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-left: 4px solid #6a89cc;
+        }
+        
+        .examples h3 {
+            margin-bottom: 10px;
+            color: #4a69bd;
+        }
+        
+        .examples p {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        
+        .error {
+            color: #e53935;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 0.8rem;
+            border-top: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+        
+        .convert-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #6a89cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .convert-btn:hover {
+            background-color: #5a79bc;
+        }
+        
+        .info-box {
+            background-color: #e8f4fd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #4a69bd;
+        }
+        
+        .info-box h3 {
+            color: #4a69bd;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>A1Z26 编码转换器</h1>
+            <p class="description">A1Z26是一种简单的替换密码，其中字母A=1，B=2，...，Z=26</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="mode-selector">
+                <div class="mode-option active" data-mode="numbers-to-letters">数字 → 字母</div>
+                <div class="mode-option" data-mode="letters-to-numbers">字母 → 数字</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="input-text" id="input-label">输入数字 (用空格分隔):</label>
+                <input type="text" id="input-text" placeholder="例如: 1 2 3 4 5">
+                <div class="error" id="error-message"></div>
+            </div>
+            
+            <button id="convert-btn" class="convert-btn">转换</button>
+            
+            <div class="input-group">
+                <label for="result">结果:</label>
+                <div class="result-box" id="result">结果将显示在这里</div>
+            </div>
+            
+            <div class="examples">
+                <h3>使用示例:</h3>
+                <p><strong>数字转字母:</strong> 输入 "8 5 12 12 15" 将得到 "hello"</p>
+                <p><strong>字母转数字:</strong> 输入 "World" 将得到 "23 15 18 12 4"</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>关于A1Z26编码</h3>
+                <p>A1Z26是一种简单的字母替换密码，每个字母被替换为其在字母表中的位置序号。A=1, B=2, ..., Z=26。这种编码常用于谜题和简单的加密场景。</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>A1Z26 编码转换器 &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modeOptions = document.querySelectorAll('.mode-option');
+            const inputLabel = document.getElementById('input-label');
+            const inputText = document.getElementById('input-text');
+            const convertBtn = document.getElementById('convert-btn');
+            const resultDiv = document.getElementById('result');
+            const errorMessage = document.getElementById('error-message');
+            
+            let currentMode = 'numbers-to-letters';
+            
+            // 模式切换
+            modeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    modeOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    currentMode = this.getAttribute('data-mode');
+                    
+                    // 更新输入提示
+                    if (currentMode === 'numbers-to-letters') {
+                        inputLabel.textContent = '输入数字 (用空格分隔):';
+                        inputText.placeholder = '例如: 1 2 3 4 5';
+                    } else {
+                        inputLabel.textContent = '输入字母 (自动过滤空格):';
+                        inputText.placeholder = '例如: HELLO 或 hello';
+                    }
+                    
+                    // 清空输入和结果
+                    inputText.value = '';
+                    resultDiv.textContent = '结果将显示在这里';
+                    errorMessage.style.display = 'none';
+                });
+            });
+            
+            // 转换按钮点击事件
+            convertBtn.addEventListener('click', function() {
+                errorMessage.style.display = 'none';
+                const input = inputText.value.trim();
+                
+                if (!input) {
+                    showError('请输入内容');
+                    return;
+                }
+                
+                try {
+                    if (currentMode === 'numbers-to-letters') {
+                        resultDiv.textContent = numbersToLetters(input);
+                    } else {
+                        resultDiv.textContent = lettersToNumbers(input);
+                    }
+                } catch (e) {
+                    showError(e.message);
+                }
+            });
+            
+            // 数字转字母函数
+            function numbersToLetters(input) {
+                // 过滤多余空格，只保留一个空格作为分隔符
+                const numbers = input.replace(/\s+/g, ' ').trim().split(' ');
+                let result = '';
+                
+                for (let num of numbers) {
+                    // 验证是否为有效数字
+                    if (!/^\d+$/.test(num)) {
+                        throw new Error(`"${num}" 不是有效的数字`);
+                    }
+                    
+                    const n = parseInt(num, 10);
+                    
+                    // 验证数字范围
+                    if (n < 1 || n > 26) {
+                        throw new Error(`数字 ${n} 超出范围 (1-26)`);
+                    }
+                    
+                    // 转换为小写字母 (A=1, B=2, ..., Z=26)
+                    result += String.fromCharCode(96 + n); // 使用96+得到小写字母
+                }
+                
+                return result;
+            }
+            
+            // 字母转数字函数
+            function lettersToNumbers(input) {
+                // 移除非字母字符和所有空格，并转换为大写
+                const letters = input.replace(/[^A-Za-z]/g, '').toUpperCase();
+                
+                if (!letters) {
+                    throw new Error('未找到有效字母');
+                }
+                
+                let result = [];
+                
+                for (let letter of letters) {
+                    // 获取字母的ASCII码并转换为数字 (A=1, B=2, ..., Z=26)
+                    const num = letter.charCodeAt(0) - 64;
+                    
+                    if (num < 1 || num > 26) {
+                        throw new Error(`"${letter}" 不是有效的英文字母`);
+                    }
+                    
+                    result.push(num.toString());
+                }
+                
+                return result.join(' ');
+            }
+            
+            // 显示错误信息
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                resultDiv.textContent = '转换失败';
+            }
+            
+            // 添加实时转换功能
+            inputText.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    resultDiv.textContent = '结果将显示在这里';
+                    errorMessage.style.display = 'none';
+                    return;
+                }
+                
+                try {
+                    if (currentMode === 'numbers-to-letters') {
+                        resultDiv.textContent = numbersToLetters(this.value);
+                    } else {
+                        resultDiv.textContent = lettersToNumbers(this.value);
+                    }
+                    errorMessage.style.display = 'none';
+                } catch (e) {
+                    // 输入过程中允许部分错误，不显示错误信息
+                    resultDiv.textContent = '输入中...';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
