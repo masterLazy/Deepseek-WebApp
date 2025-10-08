@@ -26,10 +26,9 @@
         /* 顶部导航栏 */
         .top-nav {
             width: 100%;
-            background: linear-gradient(to right, #4a69bd, #6a89cc);
-            color: white;
+            background: transparent;
+            color: #4a69bd;
             padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .nav-content {
@@ -47,7 +46,7 @@
         }
 
         .home-link {
-            color: white;
+            color: #333;
             text-decoration: none;
             font-size: 0.9rem;
             display: flex;
@@ -55,12 +54,12 @@
             gap: 5px;
             padding: 8px 15px;
             border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(102, 102, 102, 0.1);
             transition: background-color 0.3s;
         }
 
         .home-link:hover {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(102, 102, 102, 0.3);
             text-decoration: none;
         }
 
@@ -152,15 +151,42 @@
             color: white;
         }
 
+        .result-container {
+            position: relative;
+            margin-top: 10px;
+        }
+
         .result-box {
             background-color: #f8f9fa;
             border-radius: 8px;
-            padding: 15px;
+            padding: 15px 50px 15px 15px;
             min-height: 60px;
-            margin-top: 10px;
             border: 2px dashed #e0e0e0;
             font-family: monospace;
             word-break: break-all;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #555;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #5a79bc;
+            color: white;
+        }
+
+        .copy-btn.copied {
+            background-color: #4CAF50;
+            color: white;
         }
 
         .error {
@@ -259,7 +285,10 @@
 
             <div class="input-group">
                 <label for="result">结果:</label>
-                <div class="result-box" id="result">结果将显示在这里</div>
+                <div class="result-container">
+                    <div class="result-box" id="result">结果将显示在这里</div>
+                    <button class="copy-btn" id="copy-btn">复制</button>
+                </div>
             </div>
 
             <div class="info-box">
@@ -286,6 +315,7 @@
             const inputText = document.getElementById('input-text');
             const convertBtn = document.getElementById('convert-btn');
             const resultDiv = document.getElementById('result');
+            const copyBtn = document.getElementById('copy-btn');
             const errorMessage = document.getElementById('error-message');
 
             let currentMode = 'numbers-to-letters';
@@ -310,6 +340,8 @@
                     inputText.value = '';
                     resultDiv.textContent = '结果将显示在这里';
                     errorMessage.style.display = 'none';
+                    copyBtn.textContent = '复制';
+                    copyBtn.classList.remove('copied');
                 });
             });
 
@@ -329,9 +361,58 @@
                     } else {
                         resultDiv.textContent = lettersToNumbers(input);
                     }
+                    // 转换成功后重置复制按钮状态
+                    copyBtn.textContent = '复制';
+                    copyBtn.classList.remove('copied');
                 } catch (e) {
                     showError(e.message);
                 }
+            });
+
+            // 复制按钮点击事件
+            copyBtn.addEventListener('click', function () {
+                const resultText = resultDiv.textContent;
+
+                // 如果结果框显示的是默认文本或错误信息，不执行复制
+                if (resultText === '结果将显示在这里' ||
+                    resultText === '转换失败' ||
+                    resultText === '输入中...') {
+                    return;
+                }
+
+                // 使用现代剪贴板API
+                navigator.clipboard.writeText(resultText).then(() => {
+                    // 复制成功反馈
+                    copyBtn.textContent = '已复制!';
+                    copyBtn.classList.add('copied');
+
+                    // 3秒后恢复原始状态
+                    setTimeout(() => {
+                        copyBtn.textContent = '复制';
+                        copyBtn.classList.remove('copied');
+                    }, 3000);
+                }).catch(err => {
+                    // 如果剪贴板API失败，使用传统方法
+                    const textArea = document.createElement('textarea');
+                    textArea.value = resultText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        // 复制成功反馈
+                        copyBtn.textContent = '已复制!';
+                        copyBtn.classList.add('copied');
+
+                        // 3秒后恢复原始状态
+                        setTimeout(() => {
+                            copyBtn.textContent = '复制';
+                            copyBtn.classList.remove('copied');
+                        }, 3000);
+                    } catch (e) {
+                        alert('复制失败，请手动复制结果');
+                    }
+                    document.body.removeChild(textArea);
+                });
             });
 
             // 数字转字母函数
@@ -390,6 +471,8 @@
                 errorMessage.textContent = message;
                 errorMessage.style.display = 'block';
                 resultDiv.textContent = '转换失败';
+                copyBtn.textContent = '复制';
+                copyBtn.classList.remove('copied');
             }
 
             // 添加实时转换功能
@@ -397,6 +480,8 @@
                 if (this.value.trim() === '') {
                     resultDiv.textContent = '结果将显示在这里';
                     errorMessage.style.display = 'none';
+                    copyBtn.textContent = '复制';
+                    copyBtn.classList.remove('copied');
                     return;
                 }
 
@@ -407,9 +492,13 @@
                         resultDiv.textContent = lettersToNumbers(this.value);
                     }
                     errorMessage.style.display = 'none';
+                    copyBtn.textContent = '复制';
+                    copyBtn.classList.remove('copied');
                 } catch (e) {
                     // 输入过程中允许部分错误，不显示错误信息
                     resultDiv.textContent = '输入中...';
+                    copyBtn.textContent = '复制';
+                    copyBtn.classList.remove('copied');
                 }
             });
         });
