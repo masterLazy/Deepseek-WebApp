@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金牌教练模拟器 v2.0.2</title>
+    <title>金牌教练模拟器 v2.1.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -980,6 +980,17 @@
                 margin: 0 0 10px 0;
             }
         }
+
+        .holiday-notice {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #d63031;
+            border-left: 5px solid #e17055;
+        }
     </style>
 </head>
 
@@ -987,21 +998,22 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-trophy"></i> 金牌教练模拟器</h1>
-            <p class="subtitle">在高中三年内，培养出一位获得国际数学奥林匹克（IMO）金牌的学生</p>
+            <p class="subtitle">在四年周期内，培养出一位获得国际数学奥林匹克（IMO）金牌的学生</p>
         </header>
 
         <div class="phase-indicator">
-            <div class="phase" id="phase-1"><i class="fas fa-user-graduate"></i> 高一阶段</div>
-            <div class="phase" id="phase-2"><i class="fas fa-user-graduate"></i> 高二阶段</div>
-            <div class="phase" id="phase-3"><i class="fas fa-user-graduate"></i> 高三阶段</div>
+            <div class="phase" id="phase-1"><i class="fas fa-seedling"></i> 基础阶段</div>
+            <div class="phase" id="phase-2"><i class="fas fa-chart-line"></i> 发展阶段</div>
+            <div class="phase" id="phase-3"><i class="fas fa-rocket"></i> 冲刺阶段</div>
+            <div class="phase" id="phase-4"><i class="fas fa-crown"></i> 巅峰阶段</div>
         </div>
 
         <div class="game-info">
             <div class="student-info">
                 <div class="student-avatar">陈</div>
                 <div class="student-name">cmo_UwU</div>
-                <p class="time-display"><i class="far fa-clock"></i> 时间：<span id="time-display">高一上学期 9月</span></p>
-                <p class="willpower-display"><i class="fas fa-brain"></i> 意志力：<span id="willpower-display">5.0</span>/10
+                <p class="time-display"><i class="far fa-clock"></i> 时间：<span id="time-display">第1年 1月</span></p>
+                <p class="willpower-display"><i class="fas fa-brain"></i> 意志力：<span id="willpower-display">6.0</span>/10
                 </p>
                 <p class="health-display"><i class="fas fa-heartbeat"></i> 健康值：<span id="health-display">8.0</span>/10
                 </p>
@@ -1021,17 +1033,17 @@
                 <div class="attribute">
                     <div class="attribute-name"><i class="fas fa-calculator"></i> 计算力</div>
                     <div class="attribute-bar">
-                        <div class="attribute-fill calculation-fill" id="calculation-fill" style="width: 40%;"></div>
+                        <div class="attribute-fill calculation-fill" id="calculation-fill" style="width: 30%;"></div>
                     </div>
-                    <div class="attribute-value" id="calculation-value">4.0</div>
+                    <div class="attribute-value" id="calculation-value">3.0</div>
                 </div>
 
                 <div class="attribute">
                     <div class="attribute-name"><i class="fas fa-eye"></i> 洞察力</div>
                     <div class="attribute-bar">
-                        <div class="attribute-fill insight-fill" id="insight-fill" style="width: 30%;"></div>
+                        <div class="attribute-fill insight-fill" id="insight-fill" style="width: 25%;"></div>
                     </div>
-                    <div class="attribute-value" id="insight-value">3.0</div>
+                    <div class="attribute-value" id="insight-value">2.5</div>
                 </div>
 
                 <div class="attribute">
@@ -1045,25 +1057,29 @@
                 <div class="attribute">
                     <div class="attribute-name"><i class="fas fa-project-diagram"></i> 逻辑思维</div>
                     <div class="attribute-bar">
-                        <div class="attribute-fill logic-fill" id="logic-fill" style="width: 25%;"></div>
+                        <div class="attribute-fill logic-fill" id="logic-fill" style="width: 22%;"></div>
                     </div>
-                    <div class="attribute-value" id="logic-value">2.5</div>
+                    <div class="attribute-value" id="logic-value">2.2</div>
                 </div>
 
                 <div class="attribute">
                     <div class="attribute-name"><i class="fas fa-memory"></i> 记忆力</div>
                     <div class="attribute-bar">
-                        <div class="attribute-fill memory-fill" id="memory-fill" style="width: 35%;"></div>
+                        <div class="attribute-fill memory-fill" id="memory-fill" style="width: 28%;"></div>
                     </div>
-                    <div class="attribute-value" id="memory-value">3.5</div>
+                    <div class="attribute-value" id="memory-value">2.8</div>
                 </div>
             </div>
         </div>
 
         <div class="competition-info">
             <h3><i class="fas fa-flag-checkered"></i> 即将到来的比赛</h3>
-            <p id="next-competition">校内选拔赛 - 11月</p>
-            <p id="competition-requirements">要求：计算力 ≥ 5，洞察力 ≥ 4</p>
+            <p id="next-competition">校内选拔赛 - 第1年 10月</p>
+            <p id="competition-requirements">要求：计算力 ≥ 4，洞察力 ≥ 3</p>
+        </div>
+
+        <div id="holiday-notice" class="holiday-notice" style="display: none;">
+            <i class="fas fa-umbrella-beach"></i> 当前是假期月份（7-8月），学生自动休息恢复意志力和健康值
         </div>
 
         <div class="actions">
@@ -1071,7 +1087,7 @@
         </div>
 
         <div class="coach-actions">
-            <h3><i class="fas fa-chalkboard-teacher"></i> 教练技能（每学期可使用一次）</h3>
+            <h3><i class="fas fa-chalkboard-teacher"></i> 教练技能（每半年可使用一次）</h3>
             <div class="coach-buttons">
                 <button class="coach-button" id="coach-training"><i class="fas fa-user-friends"></i> 一对一特训</button>
                 <button class="coach-button" id="coach-mindset"><i class="fas fa-brain"></i> 心态调整</button>
@@ -1085,11 +1101,11 @@
             <div class="event-log" id="event-log">
                 <div class="event-entry">
                     <div class="event-icon"><i class="fas fa-info-circle"></i></div>
-                    <div>欢迎来到金牌教练模拟器！你接收了一位有潜力的高一学生cmo_UwU，请开始你的教练生涯。</div>
+                    <div>欢迎来到金牌教练模拟器 v2.1.0！你接收了一位有潜力的学生cmo_UwU，请开始你的教练生涯。</div>
                 </div>
                 <div class="event-entry">
                     <div class="event-icon"><i class="fas fa-bullseye"></i></div>
-                    <div>目标：在三年内培养出一位IMO金牌选手。</div>
+                    <div>目标：在四年周期内培养出一位IMO金牌选手。</div>
                 </div>
                 <div class="event-entry">
                     <div class="event-icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -1189,16 +1205,16 @@
     </div>
 
     <script>
-        // 游戏状态
+        // 游戏状态 - 已优化
         const gameState = {
-            year: 1, // 1-3: 高一到高三
-            month: 9, // 9-8: 9月到次年8月
-            calculation: 4,
-            insight: 3,
+            year: 1, // 1-4: 四年周期
+            month: 1, // 1-12: 1月到12月
+            calculation: 3,
+            insight: 2.5,
             creativity: 2,
-            logic: 2.5,
-            memory: 3.5,
-            willpower: 5,
+            logic: 2.2,
+            memory: 2.8,
+            willpower: 6,
             health: 8,
             trainingIntensity: 5,
             relationship: 7,
@@ -1220,25 +1236,29 @@
             },
             gameActive: true,
             competitionResults: [],
-            dialogueTriggered: false  // 标记对话是否已触发
+            dialogueTriggered: false,
+            // 新增：假期标记
+            isHoliday: false,
+            // 新增：战术分析标记
+            hasAnalysisBonus: false
         };
 
-        // 行动定义
+        // 行动定义 - 已优化平衡性
         const actions = [
             {
                 id: 'basic',
                 name: '基础理论深耕',
                 description: '刷《奥数教程》、《小蓝本》等基础教材，巩固数学基础。',
                 icon: 'fas fa-book',
-                effects: { calculation: 0.8, insight: 0.7, logic: 0.5, willpower: -0.8, health: -0.3 },
-                intensity: 7
+                effects: { calculation: 0.4, insight: 0.3, logic: 0.2, willpower: -0.4, health: -0.2 },
+                intensity: 5
             },
             {
                 id: 'algebra',
                 name: '专题突破：代数',
                 description: '集中攻克代数模块，提升代数解题能力。',
                 icon: 'fas fa-superscript',
-                effects: { calculation: 1.5, logic: 0.8, willpower: -0.5, health: -0.2 },
+                effects: { calculation: 0.8, logic: 0.4, willpower: -0.3, health: -0.1 },
                 intensity: 6
             },
             {
@@ -1246,7 +1266,7 @@
                 name: '专题突破：几何',
                 description: '集中攻克几何模块，提升几何证明能力。',
                 icon: 'fas fa-draw-polygon',
-                effects: { insight: 1.5, logic: 0.7, willpower: -0.6, health: -0.2 },
+                effects: { insight: 0.8, logic: 0.3, willpower: -0.4, health: -0.1 },
                 intensity: 6
             },
             {
@@ -1254,7 +1274,7 @@
                 name: '专题突破：数论',
                 description: '集中攻克数论模块，提升数论问题解决能力。',
                 icon: 'fas fa-infinity',
-                effects: { insight: 1.0, creativity: 1.0, logic: 0.5, willpower: -0.7, health: -0.3 },
+                effects: { insight: 0.5, creativity: 0.5, logic: 0.3, willpower: -0.5, health: -0.2 },
                 intensity: 7
             },
             {
@@ -1262,7 +1282,7 @@
                 name: '专题突破：组合',
                 description: '集中攻克组合模块，提升组合构造能力。',
                 icon: 'fas fa-puzzle-piece',
-                effects: { creativity: 1.5, logic: 0.6, willpower: -0.8, health: -0.3 },
+                effects: { creativity: 0.8, logic: 0.3, willpower: -0.5, health: -0.2 },
                 intensity: 7
             },
             {
@@ -1270,15 +1290,15 @@
                 name: '模拟考试风暴',
                 description: '进行4.5小时的全真模拟考试，全面检验学习成果。',
                 icon: 'fas fa-file-alt',
-                effects: { calculation: 0.5, insight: 0.5, creativity: 0.5, logic: 0.5, memory: 0.5, willpower: -1.2, health: -0.5 },
-                intensity: 9
+                effects: { calculation: 0.3, insight: 0.3, creativity: 0.3, logic: 0.3, memory: 0.3, willpower: -0.8, health: -0.3 },
+                intensity: 8
             },
             {
                 id: 'past',
                 name: '真题剖析研究',
                 description: '研究近十年的IMO、CMO真题，了解出题风格。',
                 icon: 'fas fa-history',
-                effects: { insight: 0.8, creativity: 0.8, memory: 0.7, willpower: -0.4 },
+                effects: { insight: 0.4, creativity: 0.4, memory: 0.4, willpower: -0.3 },
                 intensity: 5
             },
             {
@@ -1286,7 +1306,7 @@
                 name: '轻松训练',
                 description: '进行中等强度的训练，平衡学习和休息。',
                 icon: 'fas fa-walking',
-                effects: { calculation: 0.3, insight: 0.3, creativity: 0.3, willpower: 0.2, health: 0.2 },
+                effects: { calculation: 0.2, insight: 0.2, creativity: 0.2, willpower: 0.1, health: 0.1 },
                 intensity: 3
             },
             {
@@ -1294,100 +1314,75 @@
                 name: '心理与体能调节',
                 description: '进行体育运动、心理咨询或放假一天，恢复意志力。',
                 icon: 'fas fa-bed',
-                effects: { willpower: 2.5, health: 1.5, relationship: 0.5 },
+                effects: { willpower: 1.5, health: 1.0, relationship: 0.3 },
                 intensity: 1
             }
         ];
 
-        // 随机事件
+        // 随机事件 - 已优化
         const randomEvents = {
             positive: [
                 {
                     text: "灵光一闪！学生在思考一个复杂数论题时，突然找到了精妙的证明。",
-                    effect: { creativity: 1.5, logic: 0.5 },
+                    effect: { creativity: 0.8, logic: 0.3 },
                     icon: "fas fa-lightbulb"
                 },
                 {
                     text: "良师益友：遇到一位优秀的学长，相互切磋，能力全面提升。",
-                    effect: { calculation: 0.5, insight: 0.5, creativity: 0.5, relationship: 0.5 },
+                    effect: { calculation: 0.3, insight: 0.3, creativity: 0.3, relationship: 0.3 },
                     icon: "fas fa-users"
                 },
                 {
                     text: "教练的肯定：你的一次关键指导让学生豁然开朗，信心大增。",
-                    effect: { willpower: 1.5, relationship: 0.8 },
+                    effect: { willpower: 1.0, relationship: 0.5 },
                     icon: "fas fa-chalkboard-teacher"
                 },
                 {
                     text: "突破瓶颈：学生成功突破了一个长期困扰的难题，能力大幅提升。",
-                    effect: { calculation: 0.8, insight: 0.8, willpower: 1.0 },
+                    effect: { calculation: 0.5, insight: 0.5, willpower: 0.7 },
                     icon: "fas fa-rocket"
-                },
-                {
-                    text: "高效学习：学生找到了适合自己的学习方法，效率大幅提升。",
-                    effect: { calculation: 0.5, insight: 0.5, creativity: 0.5, memory: 0.5 },
-                    icon: "fas fa-bolt"
-                },
-                {
-                    text: "名师指点：有机会参加一位著名数学家的讲座，受益匪浅。",
-                    effect: { insight: 1.0, creativity: 1.0, logic: 0.5 },
-                    icon: "fas fa-user-graduate"
                 }
             ],
             negative: [
                 {
                     text: "瓶颈期：连续数周无法突破某个难点，感到沮丧。",
-                    effect: { willpower: -2.0, relationship: -0.5 },
+                    effect: { willpower: -1.2, relationship: -0.3 },
                     icon: "fas fa-tired"
                 },
                 {
                     text: "伤病困扰：因长时间伏案导致颈椎不适，本月训练效率减半。",
-                    effect: { calculation: -0.5, insight: -0.5, health: -1.5 },
+                    effect: { calculation: -0.3, insight: -0.3, health: -1.0 },
                     icon: "fas fa-procedures"
                 },
                 {
-                    text: "外界诱惑：同学邀请参加碰碰车大战，分散了注意力。",
-                    effect: { willpower: -1.5, health: -3.0 },
+                    text: "外界诱惑：同学邀请参加娱乐活动，分散了注意力。",
+                    effect: { willpower: -1.0, health: -0.5 },
                     icon: "fas fa-gamepad"
                 },
                 {
                     text: "家庭压力：家长对竞赛成绩不满意，施加压力。",
-                    effect: { willpower: -1.0, relationship: -0.5 },
+                    effect: { willpower: -0.8, relationship: -0.3 },
                     icon: "fas fa-home"
-                },
-                {
-                    text: "学习疲劳：连续高强度训练导致学习效率下降。",
-                    effect: { calculation: -0.3, insight: -0.3, creativity: -0.3, willpower: -1.0 },
-                    icon: "fas fa-tired"
-                },
-                {
-                    text: "感冒发烧：因过度劳累导致生病，需要休息。",
-                    effect: { health: -2.0, willpower: -1.0 },
-                    icon: "fas fa-head-side-cough"
-                },
-                {
-                    text: "信心受挫：在一次模拟考试中表现不佳，信心受打击。",
-                    effect: { willpower: -2.0, relationship: -0.3 },
-                    icon: "fas fa-sad-tear"
                 }
             ],
             special: [
                 {
                     text: "是否要走高考路线？家长担心竞赛耽误文化课，你需要成功说服。",
-                    effect: { willpower: -1.0, relationship: -0.5 },
-                    condition: () => gameState.year === 1 && gameState.month === 12,
-                    requirement: () => gameState.relationship >= 6,
+                    effect: { willpower: -0.8, relationship: -0.3 },
+                    condition: () => gameState.year === 1 && gameState.month === 6,
+                    requirement: () => gameState.relationship >= 5,
                     icon: "fas fa-balance-scale"
                 },
                 {
                     text: "学校要求参加额外活动，会占用训练时间。",
-                    effect: { calculation: -0.3, insight: -0.3 },
-                    condition: () => Math.random() < 0.3 && gameState.month === 10,
+                    effect: { calculation: -0.2, insight: -0.2 },
+                    condition: () => Math.random() < 0.3 && gameState.month === 4,
                     icon: "fas fa-calendar-times"
                 },
                 {
                     text: "有机会参加外省的高水平训练营，但需要额外费用和时间。",
-                    effect: { calculation: 1.0, insight: 1.0, creativity: 0.5, willpower: -1.0 },
-                    condition: () => gameState.year === 2 && gameState.month === 6 && Math.random() < 0.4,
+                    effect: { calculation: 0.6, insight: 0.6, creativity: 0.3, willpower: -0.7 },
+                    condition: () => gameState.year === 2 && gameState.month === 7 && Math.random() < 0.4,
                     icon: "fas fa-campground"
                 }
             ]
@@ -1497,87 +1492,87 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             }
         ];
 
-        // 竞赛定义
+        // 竞赛定义 - 已优化时间线和难度
         const competitions = [
             {
                 id: 'school',
                 name: '校内选拔赛',
-                month: 11,
+                month: 10,
                 year: 1,
-                requirements: { calculation: 5, insight: 4 },
+                requirements: { calculation: 4, insight: 3 },
                 description: '这是学生面临的第一次正式挑战，需要展示出足够的能力才能进入校队。',
-                success: { willpower: 1.5, relationship: 0.5 },
-                failure: { willpower: -2.0 }
+                success: { willpower: 0.8, relationship: 0.3 },
+                failure: { willpower: -1.2 }
             },
             {
                 id: 'city',
                 name: '市级竞赛',
                 month: 3,
-                year: 1,
-                requirements: { calculation: 5.5, insight: 4.5, creativity: 3.5 },
+                year: 2,
+                requirements: { calculation: 4.5, insight: 3.5, creativity: 3 },
                 description: '市级数学竞赛，优胜者将有机会参加省级联赛。',
-                success: { willpower: 1.0, relationship: 0.3 },
+                success: { willpower: 0.7, relationship: 0.2 },
                 failure: { willpower: -1.0 }
             },
             {
                 id: 'provincial1',
                 name: '省级联赛（第一轮）',
                 month: 5,
-                year: 1,
-                requirements: { calculation: 6, insight: 5, creativity: 4, logic: 4 },
+                year: 2,
+                requirements: { calculation: 5, insight: 4, creativity: 3.5, logic: 3.5 },
                 description: '省级数学联赛第一轮，竞争激烈，需要充分准备。',
-                success: { willpower: 1.5, relationship: 0.5 },
-                failure: { willpower: -1.5 }
+                success: { willpower: 1.0, relationship: 0.3 },
+                failure: { willpower: -1.2 }
             },
             {
                 id: 'provincial2',
                 name: '省级联赛（第二轮）',
                 month: 9,
                 year: 2,
-                requirements: { calculation: 6.5, insight: 5.5, creativity: 4.5, logic: 4.5 },
+                requirements: { calculation: 5.5, insight: 4.5, creativity: 4, logic: 4 },
                 description: '省级数学联赛第二轮，难度更大，优胜者将进入全国联赛。',
-                success: { willpower: 2.0, relationship: 0.8 },
-                failure: { willpower: -2.0 }
+                success: { willpower: 1.2, relationship: 0.5 },
+                failure: { willpower: -1.5 }
             },
             {
                 id: 'national',
                 name: '全国高中数学联赛',
                 month: 10,
-                year: 2,
-                requirements: { calculation: 7, insight: 6, creativity: 5, logic: 5, memory: 4 },
+                year: 3,
+                requirements: { calculation: 6, insight: 5, creativity: 4.5, logic: 4.5, memory: 4 },
                 description: '全国高中数学联赛，顶尖选手的竞技场。',
-                success: { willpower: 2.5, relationship: 1.0 },
-                failure: { willpower: -2.5 }
+                success: { willpower: 1.5, relationship: 0.7 },
+                failure: { willpower: -1.8 }
             },
             {
                 id: 'cmo',
                 name: '中国数学奥林匹克（CMO）',
                 month: 11,
-                year: 2,
-                requirements: { calculation: 7.5, insight: 6.5, creativity: 5.5, logic: 5.5, memory: 4.5 },
+                year: 3,
+                requirements: { calculation: 6.5, insight: 5.5, creativity: 5, logic: 5, memory: 4.5 },
                 description: '中国数学奥林匹克，国家集训队的选拔赛。',
-                success: { willpower: 3.0, relationship: 1.5 },
-                failure: { willpower: -3.0 }
+                success: { willpower: 2.0, relationship: 1.0 },
+                failure: { willpower: -2.2 }
             },
             {
                 id: 'team',
                 name: '国家队选拔',
                 month: 3,
-                year: 3,
-                requirements: { calculation: 8.5, insight: 7.5, creativity: 6.5, logic: 6.5, memory: 5.5, willpower: 6 },
+                year: 4,
+                requirements: { calculation: 7.5, insight: 6.5, creativity: 6, logic: 6, memory: 5.5, willpower: 5 },
                 description: '国际数学奥林匹克中国国家队选拔，只有最优秀的6名选手能够入选。',
-                success: { willpower: 4.0, relationship: 2.0 },
-                failure: { willpower: -4.0 }
+                success: { willpower: 2.5, relationship: 1.5 },
+                failure: { willpower: -2.8 }
             },
             {
                 id: 'imo',
                 name: '国际数学奥林匹克（IMO）',
                 month: 7,
-                year: 3,
-                requirements: { calculation: 9, insight: 8, creativity: 7, logic: 7, memory: 6, willpower: 7 },
+                year: 4,
+                requirements: { calculation: 8, insight: 7, creativity: 6.5, logic: 6.5, memory: 6, willpower: 6 },
                 description: '国际数学奥林匹克，世界最高水平的中学生数学竞赛。',
-                success: { willpower: 5.0, relationship: 3.0 },
-                failure: { willpower: -5.0 }
+                success: { willpower: 3.0, relationship: 2.0 },
+                failure: { willpower: -3.5 }
             }
         ];
 
@@ -1605,6 +1600,7 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
         const restartButton = document.getElementById('restart-button');
         const nextCompetitionDisplay = document.getElementById('next-competition');
         const competitionRequirementsDisplay = document.getElementById('competition-requirements');
+        const holidayNotice = document.getElementById('holiday-notice');
 
         // 弹窗元素
         const actionModal = document.getElementById('action-modal');
@@ -1626,14 +1622,13 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             setupEventListeners();
             generateActionCards();
             updateNextCompetition();
+            updatePhaseIndicator();
         }
 
         // 更新显示
         function updateDisplay() {
             // 更新时间显示
-            const yearText = gameState.year === 1 ? "高一" : gameState.year === 2 ? "高二" : "高三";
-            const semester = gameState.month >= 9 || gameState.month <= 2 ? "上" : "下";
-            timeDisplay.textContent = `${yearText}${semester}学期 ${gameState.month}月`;
+            timeDisplay.textContent = `第${gameState.year}年 ${gameState.month}月`;
 
             // 更新属性值，保留一位小数
             calculationValue.textContent = gameState.calculation.toFixed(1);
@@ -1664,13 +1659,16 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
 
             // 更新下一个比赛信息
             updateNextCompetition();
+
+            // 更新假期通知
+            updateHolidayNotice();
         }
 
         // 更新下一个比赛信息
         function updateNextCompetition() {
             const nextComp = getNextCompetition();
             if (nextComp) {
-                nextCompetitionDisplay.textContent = `${nextComp.name} - ${nextComp.month}月`;
+                nextCompetitionDisplay.textContent = `${nextComp.name} - 第${nextComp.year}年 ${nextComp.month}月`;
 
                 let requirementsText = "要求：";
                 const reqs = [];
@@ -1713,9 +1711,10 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             phases.forEach((phase, index) => {
                 phase.classList.remove('active', 'completed');
 
-                if (index + 1 < gameState.year) {
+                // 根据年份确定阶段
+                if (gameState.year > index + 1) {
                     phase.classList.add('completed');
-                } else if (index + 1 === gameState.year) {
+                } else if (gameState.year === index + 1) {
                     phase.classList.add('active');
                 }
             });
@@ -1739,6 +1738,15 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             document.getElementById('coach-mindset').disabled = gameState.coachActionsUsed.mindset;
             document.getElementById('coach-analysis').disabled = gameState.coachActionsUsed.analysis;
             document.getElementById('coach-rest').disabled = gameState.coachActionsUsed.rest;
+        }
+
+        // 更新假期通知
+        function updateHolidayNotice() {
+            if (gameState.month === 7 || gameState.month === 8) {
+                holidayNotice.style.display = 'block';
+            } else {
+                holidayNotice.style.display = 'none';
+            }
         }
 
         // 生成行动卡片
@@ -1854,77 +1862,92 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
                 intensityChange: 0
             };
 
-            // 计算训练强度
-            let totalIntensity = 0;
-            gameState.selectedActions.forEach(actionId => {
-                const action = actions.find(a => a.id === actionId);
-                totalIntensity += action.intensity;
-            });
+            // 检查是否为假期（7-8月）
+            gameState.isHoliday = (gameState.month === 7 || gameState.month === 8);
 
-            const avgIntensity = totalIntensity / gameState.selectedActions.length;
-            monthlyResults.intensityChange = avgIntensity - gameState.trainingIntensity;
-            gameState.trainingIntensity = Math.max(1, Math.min(10, gameState.trainingIntensity * 0.7 + avgIntensity * 0.3));
-
-            // 应用行动效果
-            gameState.selectedActions.forEach(actionId => {
-                const action = actions.find(a => a.id === actionId);
-
-                // 根据训练强度调整效果
-                const intensityFactor = gameState.trainingIntensity / 5;
-                const adjustedEffects = {};
-                for (const [key, value] of Object.entries(action.effects)) {
-                    adjustedEffects[key] = value * intensityFactor;
-                }
-
-                // 根据健康值和意志力调整效果
-                const healthFactor = gameState.health / 10;
-                const willpowerFactor = gameState.willpower / 10;
-                const overallFactor = (healthFactor + willpowerFactor) / 2;
-
-                for (const [key, value] of Object.entries(adjustedEffects)) {
-                    if (value > 0) {
-                        adjustedEffects[key] = value * overallFactor;
-                    }
-                }
-
-                applyEffects(adjustedEffects, monthlyResults.attributeChanges);
-
-                // 记录行动结果
-                monthlyResults.actions.push({
-                    name: action.name,
-                    effects: adjustedEffects
+            if (gameState.isHoliday) {
+                // 假期自动安排休息，恢复意志力和健康值
+                const holidayRecovery = {
+                    willpower: 1.5,
+                    health: 1.0,
+                    relationship: 0.2
+                };
+                applyEffects(holidayRecovery, monthlyResults.attributeChanges);
+                addEventLog(`假期时间，学生得到了充分休息，意志力和健康值有所恢复。`, 'positive', 'fas fa-umbrella-beach');
+            } else {
+                // 正常训练月份
+                // 计算训练强度
+                let totalIntensity = 0;
+                gameState.selectedActions.forEach(actionId => {
+                    const action = actions.find(a => a.id === actionId);
+                    totalIntensity += action.intensity;
                 });
 
-                addEventLog(`执行了${action.name}`, 'normal', 'fas fa-running');
-            });
+                const avgIntensity = totalIntensity / gameState.selectedActions.length;
+                monthlyResults.intensityChange = avgIntensity - gameState.trainingIntensity;
+                gameState.trainingIntensity = Math.max(1, Math.min(10, gameState.trainingIntensity * 0.7 + avgIntensity * 0.3));
 
-            // 触发随机事件
-            const event = triggerRandomEvent();
-            if (event) {
-                applyEffects(event.effect, monthlyResults.attributeChanges);
-                monthlyResults.events.push(event);
-                addEventLog(event.text, event.type, event.icon);
+                // 应用行动效果
+                gameState.selectedActions.forEach(actionId => {
+                    const action = actions.find(a => a.id === actionId);
+
+                    // 根据训练强度调整效果
+                    const intensityFactor = gameState.trainingIntensity / 5;
+                    const adjustedEffects = {};
+                    for (const [key, value] of Object.entries(action.effects)) {
+                        adjustedEffects[key] = value * intensityFactor;
+                    }
+
+                    // 根据健康值和意志力调整效果
+                    const healthFactor = gameState.health / 10;
+                    const willpowerFactor = gameState.willpower / 10;
+                    const overallFactor = (healthFactor + willpowerFactor) / 2;
+
+                    for (const [key, value] of Object.entries(adjustedEffects)) {
+                        if (value > 0) {
+                            adjustedEffects[key] = value * overallFactor;
+                        }
+                    }
+
+                    applyEffects(adjustedEffects, monthlyResults.attributeChanges);
+
+                    // 记录行动结果
+                    monthlyResults.actions.push({
+                        name: action.name,
+                        effects: adjustedEffects
+                    });
+
+                    addEventLog(`执行了${action.name}`, 'normal', 'fas fa-running');
+                });
+
+                // 触发随机事件
+                const event = triggerRandomEvent();
+                if (event) {
+                    applyEffects(event.effect, monthlyResults.attributeChanges);
+                    monthlyResults.events.push(event);
+                    addEventLog(event.text, event.type, event.icon);
+                }
+
+                // 自然属性变化
+                const naturalChanges = {
+                    willpower: -0.1,
+                    health: -0.05
+                };
+
+                // 高强度训练会增加自然衰减
+                if (gameState.trainingIntensity > 7) {
+                    naturalChanges.willpower -= 0.2;
+                    naturalChanges.health -= 0.1;
+                }
+
+                // 低强度训练会减少自然衰减
+                if (gameState.trainingIntensity < 3) {
+                    naturalChanges.willpower += 0.1;
+                    naturalChanges.health += 0.1;
+                }
+
+                applyEffects(naturalChanges, monthlyResults.attributeChanges);
             }
-
-            // 自然属性变化
-            const naturalChanges = {
-                willpower: -0.2,
-                health: -0.1
-            };
-
-            // 高强度训练会增加自然衰减
-            if (gameState.trainingIntensity > 7) {
-                naturalChanges.willpower -= 0.3;
-                naturalChanges.health -= 0.2;
-            }
-
-            // 低强度训练会减少自然衰减
-            if (gameState.trainingIntensity < 3) {
-                naturalChanges.willpower += 0.2;
-                naturalChanges.health += 0.2;
-            }
-
-            applyEffects(naturalChanges, monthlyResults.attributeChanges);
 
             // 检查竞赛
             const competitionResult = checkCompetitions();
@@ -1941,21 +1964,19 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             // 显示月度结果弹窗
             showMonthlyResults(monthlyResults);
 
-
             // 检查健康警告
             if (gameState.health < 3) {
                 addEventLog("警告：学生的健康状况不佳，请考虑减少训练强度或安排休息！", "negative", "fas fa-exclamation-triangle");
             }
 
             // 检查是否触发对话
-            if (gameState.willpower < 0.1 && !gameState.dialogueTriggered) {
+            if (gameState.willpower < 3 && !gameState.dialogueTriggered) {
                 triggerDialogue();
             } else if (gameState.willpower < 3) {
                 // 检查游戏结束条件
                 checkGameEnd();
                 addEventLog("警告：学生的意志力很低，可能会影响训练效果和比赛表现！", "negative", "fas fa-exclamation-triangle");
             }
-
         }
 
         // 触发对话
@@ -2173,19 +2194,8 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
                         applyEffects(comp.failure, {});
 
                         // 某些关键比赛失败会导致游戏结束
-                        if (gameState.year == 3 && (comp.id === 'school' || comp.id === 'imo')) {
-                            let endMessage = "";
-                            let endDescription = "";
-
-                            if (comp.id === 'school') {
-                                endMessage = "遗憾退场";
-                                endDescription = "学生在校内选拔赛折戟，未能进入校队，竞赛之路就此结束。";
-                            } else if (comp.id === 'imo') {
-                                endMessage = "功勋教练";
-                                endDescription = "学生在IMO中获得银牌，表现卓越但未能获得金牌！";
-                            }
-
-                            endGame(endMessage, endDescription);
+                        if (gameState.year === 4 && comp.id === 'imo') {
+                            endGame("功亏一篑", "学生在IMO中表现优异但未能获得金牌，距离最高荣誉仅一步之遥！");
                         }
                     }
 
@@ -2227,7 +2237,10 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             const relationshipFactor = gameState.relationship / 10;
             const overallFactor = (healthFactor + willpowerFactor + relationshipFactor) / 3;
 
-            return meetRequirements && (randomFactor * overallFactor > 0.7);
+            // 战术分析加成
+            const analysisBonus = gameState.hasAnalysisBonus ? 0.2 : 0;
+
+            return meetRequirements && (randomFactor * (overallFactor + analysisBonus) > 0.7);
         }
 
         // 显示竞赛结果
@@ -2252,25 +2265,35 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
 
             competitionContent.innerHTML = contentHTML;
             competitionModal.style.display = 'flex';
+
+            // 使用战术分析后重置标记
+            if (gameState.hasAnalysisBonus) {
+                gameState.hasAnalysisBonus = false;
+            }
         }
 
         // 推进时间
         function advanceTime() {
             gameState.month++;
 
-            // 学年转换
+            // 年份转换
             if (gameState.month > 12) {
                 gameState.month = 1;
                 gameState.year++;
 
-                // 重置教练技能
-                gameState.coachActionsUsed.training = false;
-                gameState.coachActionsUsed.mindset = false;
-                gameState.coachActionsUsed.analysis = false;
-                gameState.coachActionsUsed.rest = false;
+                // 每半年重置教练技能
+                if (gameState.year <= 4) {
+                    gameState.coachActionsUsed.training = false;
+                    gameState.coachActionsUsed.mindset = false;
+                    gameState.coachActionsUsed.analysis = false;
+                    gameState.coachActionsUsed.rest = false;
 
-                addEventLog(`新的学年开始了！现在是高${gameState.year}。`, "special", "fas fa-calendar-alt");
+                    addEventLog(`新的一年开始了！现在是第${gameState.year}年。`, "special", "fas fa-calendar-alt");
+                }
             }
+
+            // 检查游戏结束条件
+            checkGameEnd();
         }
 
         // 显示月度结果
@@ -2411,23 +2434,23 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
                 case 'training':
                     const attributes = ['calculation', 'insight', 'creativity', 'logic', 'memory'];
                     const attribute = attributes[Math.floor(Math.random() * attributes.length)];
-                    effects[attribute] = 2;
-                    message = `进行了一对一特训，${getAttributeName(attribute)}大幅提升！`;
+                    effects[attribute] = 1.2;
+                    message = `进行了一对一特训，${getAttributeName(attribute)}显著提升！`;
                     break;
                 case 'mindset':
-                    effects.willpower = 3;
-                    effects.relationship = 1;
+                    effects.willpower = 2.0;
+                    effects.relationship = 0.8;
                     message = "进行了心态调整，学生的意志力大幅恢复，师生关系更加融洽！";
                     break;
                 case 'analysis':
                     // 战术分析效果会在下次竞赛中体现
+                    gameState.hasAnalysisBonus = true;
                     message = "进行了战术分析，下次竞赛成绩将会提升！";
-                    // 这里可以添加一个标记，在下次竞赛时使用
                     break;
                 case 'rest':
-                    effects.willpower = 2;
-                    effects.health = 3;
-                    effects.trainingIntensity = -3;
+                    effects.willpower = 1.5;
+                    effects.health = 2.0;
+                    effects.trainingIntensity = -2;
                     message = "安排了强制休息，学生的健康值和意志力得到恢复，训练强度降低。";
                     break;
             }
@@ -2478,20 +2501,28 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
 
         // 检查游戏结束
         function checkGameEnd() {
-            if (gameState.year > 3) {
-                endGame("时间结束", "三年高中时光已结束，学生毕业离校。");
+            if (gameState.year > 4) {
+                if (gameState.milestones.imo) {
+                    endGame("圆满成功", "恭喜！你成功培养出了一位IMO金牌选手！你的教练生涯达到了巅峰！");
+                } else {
+                    endGame("周期结束", "四年培养周期已结束，学生毕业离校。虽然没有获得IMO金牌，但也是一段宝贵的经历。");
+                }
+                return;
             }
 
             if (gameState.health <= 0) {
                 endGame("健康问题", "学生因健康问题不得不退出竞赛训练。");
+                return;
             }
 
             if (gameState.willpower <= 0) {
                 endGame("意志崩溃", "学生因意志力崩溃放弃了竞赛之路。");
+                return;
             }
 
             if (gameState.relationship <= 0) {
                 endGame("关系破裂", "师生关系破裂，无法继续指导。");
+                return;
             }
         }
 
@@ -2504,6 +2535,11 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
 
             // 禁用行动按钮
             actionButton.disabled = true;
+
+            // 禁用教练技能按钮
+            document.querySelectorAll('.coach-button').forEach(button => {
+                button.disabled = true;
+            });
         }
 
         // 重新开始游戏
@@ -2511,13 +2547,13 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
             // 重置游戏状态
             Object.assign(gameState, {
                 year: 1,
-                month: 9,
-                calculation: 4,
-                insight: 3,
+                month: 1,
+                calculation: 3,
+                insight: 2.5,
                 creativity: 2,
-                logic: 2.5,
-                memory: 3.5,
-                willpower: 5,
+                logic: 2.2,
+                memory: 2.8,
+                willpower: 6,
                 health: 8,
                 trainingIntensity: 5,
                 relationship: 7,
@@ -2539,18 +2575,20 @@ cmo_UwU低头看向自己右手，中指第一个关节处有块厚茧，是长�
                 },
                 gameActive: true,
                 competitionResults: [],
-                dialogueTriggered: false
+                dialogueTriggered: false,
+                isHoliday: false,
+                hasAnalysisBonus: false
             });
 
             // 清空事件日志
             eventLog.innerHTML = `
                 <div class="event-entry">
                     <div class="event-icon"><i class="fas fa-info-circle"></i></div>
-                    <div>欢迎来到金牌教练模拟器！你接收了一位有潜力的高一学生cmo_UwU，请开始你的教练生涯。</div>
+                    <div>欢迎来到金牌教练模拟器 v2.1.0！你接收了一位有潜力的学生cmo_UwU，请开始你的教练生涯。</div>
                 </div>
                 <div class="event-entry">
                     <div class="event-icon"><i class="fas fa-bullseye"></i></div>
-                    <div>目标：在三年内培养出一位IMO金牌选手。</div>
+                    <div>目标：在四年周期内培养出一位IMO金牌选手。</div>
                 </div>
                 <div class="event-entry">
                     <div class="event-icon"><i class="fas fa-exclamation-triangle"></i></div>
