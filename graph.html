@@ -789,6 +789,14 @@
 
             if (selectedElementType === 'node') {
                 selectedElement.strokeColor = currentColor;
+
+                // 直接更新节点颜色，不重启模拟
+                g.selectAll('.node')
+                    .filter(d => d.id === selectedElement.id)
+                    .select('circle')
+                    .attr('stroke', currentColor)
+                    .attr('stroke-width', 2);
+
                 document.getElementById('selected-info').textContent =
                     `已选中节点 ${selectedElement.label}，轮廓颜色已更新`;
             } else if (selectedElementType === 'edge') {
@@ -804,11 +812,18 @@
                     createEdgeArrowMarker(selectedElement, edgeIndex);
                 }
 
+                // 直接更新边颜色，不重启模拟
+                g.selectAll('.edge')
+                    .filter((d, i) => i === edgeIndex)
+                    .select('line')
+                    .attr('stroke', currentColor)
+                    .attr('marker-end', graphType === 'directed' ? `url(#arrowhead-${edgeIndex})` : null)
+                    .attr('stroke-width', 2);
+
                 document.getElementById('selected-info').textContent =
                     `已选中边 ${selectedElement.source.label} → ${selectedElement.target.label}，颜色已更新`;
             }
 
-            updateGraph();
         }
 
         // 更新图显示
